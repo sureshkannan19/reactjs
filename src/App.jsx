@@ -34,39 +34,23 @@ function App() {
         <section id="core-concepts">
           <h2>Core concepts</h2>
           <ul>
-            <CoreConcept {...CORE_CONCEPTS[0]} />
-            <CoreConcept {...CORE_CONCEPTS[1]} />
-            <CoreConcept {...CORE_CONCEPTS[2]} />
-            <CoreConcept {...CORE_CONCEPTS[3]} />
+            {CORE_CONCEPTS.map((item) => (
+              <CoreConcept key={item.title} {...item} />
+            ))}
           </ul>
         </section>
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton
-              isSelected={currentTopic === "components"}
-              onSelect={() => handleSelect("components")}
-            >
-              Components
-            </TabButton>
-            <TabButton
-              isSelected={currentTopic === "jsx"}
-              onSelect={() => handleSelect("jsx")}
-            >
-              JSX
-            </TabButton>
-            <TabButton
-              isSelected={currentTopic === "props"}
-              onSelect={() => handleSelect("props")}
-            >
-              Props
-            </TabButton>
-            <TabButton
-              isSelected={currentTopic === "state"}
-              onSelect={() => handleSelect("state")}
-            >
-              State
-            </TabButton>
+            {CORE_CONCEPTS.map((item) => (
+              <TabButton
+                key={item.title}
+                isSelected={currentTopic === item.title}
+                onSelect={() => handleSelect(item.title.toLowerCase())}
+              >
+                {item.title}
+              </TabButton>
+            ))}
           </menu>
           {tabContent}
         </section>
