@@ -3,10 +3,28 @@ import Header from "./components/Header/Header.jsx";
 import TabButton from "./components/TabButton/TabButton.jsx";
 
 import { CORE_CONCEPTS } from "./assets/data.js";
+import { EXAMPLES } from "./assets/data.js";
+import { useState } from "react";
 
 function App() {
-  function handleSelect(selectedButton) {
-    console.log("Selected : " + selectedButton);
+  const [currentTopic, updateTopic] = useState();
+
+  function handleSelect(selectedTopic) {
+    updateTopic(selectedTopic);
+    console.log("Selected : " + selectedTopic);
+  }
+
+  let tabContent = <p>Please click a tab.</p>;
+  if (currentTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[currentTopic].title}</h3>
+        <p>{EXAMPLES[currentTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[currentTopic].code}</code>
+        </pre>
+      </div>
+    );
   }
 
   return (
@@ -25,14 +43,32 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={() => handleSelect("Components")}>
+            <TabButton
+              isSelected={currentTopic === "components"}
+              onSelect={() => handleSelect("components")}
+            >
               Components
             </TabButton>
-            <TabButton onSelect={() => handleSelect("JSX")}>JSX</TabButton>
-            <TabButton onSelect={() => handleSelect("Props")}>Props</TabButton>
-            <TabButton onSelect={() => handleSelect("State")}>State</TabButton>
+            <TabButton
+              isSelected={currentTopic === "jsx"}
+              onSelect={() => handleSelect("jsx")}
+            >
+              JSX
+            </TabButton>
+            <TabButton
+              isSelected={currentTopic === "props"}
+              onSelect={() => handleSelect("props")}
+            >
+              Props
+            </TabButton>
+            <TabButton
+              isSelected={currentTopic === "state"}
+              onSelect={() => handleSelect("state")}
+            >
+              State
+            </TabButton>
           </menu>
-          Dynamic Content
+          {tabContent}
         </section>
       </main>
     </div>
