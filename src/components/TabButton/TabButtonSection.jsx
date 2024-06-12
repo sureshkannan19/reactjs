@@ -1,4 +1,5 @@
 import TabButton from "./TabButton";
+import Tabs from "./Tabs";
 import { useState } from "react";
 
 import { CORE_CONCEPTS } from "../../assets/data";
@@ -24,11 +25,12 @@ export default function TabButtonSection() {
       </div>
     );
   }
-
+  /*<Tabs container="menu"> ==> 'menu' is in built-component type, 
+    for custom created components {Menu} should be given*/
   return (
     <section id="examples">
       <h2>Examples</h2>
-      <menu>
+      <Tabs container="menu">
         {CORE_CONCEPTS.map((item) => (
           <TabButton
             key={item.title}
@@ -38,7 +40,7 @@ export default function TabButtonSection() {
             {item.title}
           </TabButton>
         ))}
-      </menu>
+      </Tabs>
       {tabContent}
     </section>
   );
