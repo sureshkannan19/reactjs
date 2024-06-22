@@ -30,7 +30,7 @@ export default function TabButtonSection() {
   return (
     <section id="examples">
       <h2>Examples</h2>
-      <Tabs container="menu">
+      <Tabs Container="menu">
         {CORE_CONCEPTS.map((item) => (
           <TabButton
             key={item.title}

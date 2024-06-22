@@ -1,4 +1,3 @@
-export default function Tabs({ children, container }) {
-  const Container = container;
+export default function Tabs({ children, Container }) {
   return <Container>{children}</Container>;
 }
